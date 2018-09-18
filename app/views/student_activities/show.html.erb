@@ -1,0 +1,52 @@
+
+<h1>Actividad: <%=Activity.chapters_by_number[@activity.chapter]%></h1>
+<hr>
+<br>
+<div class="circuits_div">
+
+  <h1>Circuitos</h1>
+  <ul>
+  <%@activity.prelab.circuits.each do |circuit|%>
+      <li> <%=circuit.name%> <%=link_to "Revisar adjunto",circuit_simulations_url%></li>
+
+  <%end%>
+  </ul>
+
+  <%=button_to "Editar Adjuntos", style:"margin-bottom:0%"%>
+</div>
+<br>
+<div class="util_links_div">
+<h1>
+  Material Apoyo
+</h1>
+  <h3><u>Bibliografía</u></h3>
+
+  <ul>
+  <%@activity.prelab.util_links.each do |util_link|%>
+      <li><%=link_to util_link.link,util_link.link%></li>
+
+  <%end%>
+  </ul>
+</div>
+<br>
+<%=button_to "Ir al Quizz",answer_question_path(1), :style=>"margin-right: 0%;display: block;margin-left: auto;",method: :get%>
+
+<style>
+  .util_links_div, .circuits_div{
+
+    border-style: groove;
+    border-width: 1px;
+    min-height: 35%;
+    padding: 2% 2% 2% 2%;
+
+  }
+
+    .util_links_div{
+
+    }
+
+    .circuits_div{
+
+    }
+
+</style>

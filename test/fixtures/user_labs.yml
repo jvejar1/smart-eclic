@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  lab: one
+  class_grade: 1
+  report_grade: 1
+
+two:
+  user: two
+  lab: two
+  class_grade: 1
+  report_grade: 1

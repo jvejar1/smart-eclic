@@ -1,0 +1,12 @@
+<h1 class="module_title">Alumnos</h1>
+<br>
+<hr>
+<br>
+<%@activity.course.groups.each do |group|%>
+  <h2> Grupo <%=group.number%></h2>
+  <ul>
+    <%group.users.each do |user|%>
+      <li><%=link_to user.email,student_evaluation_path(id:@activity.id,student_id:user.id)%></li>
+    <%end%>
+  </ul>
+<%end%>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Circuit Simulations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User prelab</th>
+      <th>Circuit</th>
+      <th>Grade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @circuit_simulations.each do |circuit_simulation| %>
+      <tr>
+        <td><%= circuit_simulation.user_prelab %></td>
+        <td><%= circuit_simulation.circuit %></td>
+        <td><%= circuit_simulation.grade %></td>
+        <td><%= link_to 'Show', circuit_simulation %></td>
+        <td><%= link_to 'Edit', edit_circuit_simulation_path(circuit_simulation) %></td>
+        <td><%= link_to 'Destroy', circuit_simulation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Circuit Simulation', new_circuit_simulation_path %>

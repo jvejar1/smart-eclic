@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: 1
+  answer_text: MyString
+  question: one
+  user_prelab: one
+
+two:
+  grade: 1
+  answer_text: MyString
+  question: two
+  user_prelab: two

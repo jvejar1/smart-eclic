@@ -1,0 +1,100 @@
+<h1 class="module_title">Evaluacion Pregunta Desarrollo</h1>
+<%@user_prelab=UserPrelab.find_by(user_id:@student.id,prelab_id:@activity.prelab.id)
+@question_text_answer=QuestionTextAnswer.find_or_create_by(user_prelab_id:@user_prelab.id,question_id:@question.id)
+%>
+
+<div class="question_display">
+  <h1>Pregunta #1</h1>
+
+  <br>
+  <div class=question_info>
+
+
+    <p><%=@question.question_text%></p>
+
+    <%if @question.question_image.attached?%>
+      <%=image_tag @question.question_image, class:"question_image"%>
+    <%end%>
+
+    </br>
+  </div>
+  </br>
+
+    <%=form_for @question_text_answer, :url=>"" do |f|%>
+
+    <%=f.label :text_response, "Respuesta alumno: "%>
+      <%=f.text_field :answer_text, class: 'text_area',:size => 150,:rows=>10, :readonly=>true%>
+
+    <br>
+    <%=f.label :grade, "Nota: "%>
+    <%=f.text_field :grade %>
+
+      </br>
+
+      </br>
+      <%=submit_tag "Actualizar nota", class:"submit"%>
+
+
+    <%end%>
+
+</div>
+
+<style>
+  .question_image{
+    max-height: 40%;
+    max-width: 40%;
+
+  }
+
+  .question_display{
+    margin: 5% 15% 5% 15%;
+    padding: 2%;
+    border-style: groove  ;
+    border-radius: 3px;
+    border-color: rgba(63, 63, 63, 0.78);
+    border-width: 1px;
+    background-color: rgba(168, 167, 163, 0.19);
+
+    padding: 2% 4% 2% 4%;
+
+  }
+
+
+  .question_display h1,p{
+
+    text-align: center;
+    margin-left: 5%;
+    margin-right:  5%;
+
+  }
+
+  .question_info{
+    border-style: groove  ;
+    border-width: 1px;
+    padding-top: 2%;
+    background-color: rgba(0, 3, 115, 0.12);
+
+  }
+  .question_display img{
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+
+  }
+  .question_display .text_area{
+
+    width: 95%;
+
+    min-height:15ch;
+  }
+
+  .submit{
+
+    margin-right: 0%;
+    display: block;
+    margin-left: auto;
+
+  }
+</style>

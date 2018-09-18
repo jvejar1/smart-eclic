@@ -1,0 +1,67 @@
+<br>
+
+<h1  style="text-align: center">Evaluacion <%=@student.email%> </h1>
+
+<br>
+<h1 >Pre Laboratorio</h1>
+
+<div class="prelab_eval">
+
+  <label><b>Preguntas desarrollo:</b> </label>
+
+  <ol>
+  <%@activity.prelab.get_text_questions.each do |text_question|%>
+
+    <li>
+      <p>Question
+      <%=link_to "Revisar",student_question_evaluation_path(id:@activity.id,student_id:@student.id,question_id:text_question.id) %>
+      </p>
+    </li>
+
+  <%end%>
+
+  </ol>
+    <label><b>Simulaciones:</b> </label>
+<ol>
+    <%@activity.prelab.circuits.each do |circuit|%>
+
+      <li>
+        <p><%=circuit.name%>
+          <%=link_to "Revisar","www" %>
+        </p>
+      </li>
+
+    <%end%>
+</ol>
+
+</div>
+
+<br>
+<h1>Laboratorio</h1>
+
+<div class="lab_eval">
+  <label for="nota_informe">Nota Informe: 4</label>
+  <br>
+  <label>Nota Participacion: 4 </label>
+  <br>
+  <label>Nota Final Lab: 4 </label>
+
+  <br>
+<%=button_to "Editar", "xd"%>
+
+</div>
+
+
+
+<style>
+  .prelab_eval, .lab_eval{
+
+    border-style: groove;
+    border-width: 1px;
+    min-height: 35%;
+    padding: 2% 2% 2% 2%;
+
+  }
+
+
+</style>

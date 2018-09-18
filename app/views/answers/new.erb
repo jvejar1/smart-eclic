@@ -1,0 +1,108 @@
+<%=form_for(:question_text_answer) do |f|%>
+
+  <%end%>
+
+<div class="question_display">
+  <h1>Pregunta #1</h1>
+
+  <br>
+  <div class=question_info>
+  <p><%=@question.question_text%></p>
+
+<%if @question.question_image.attached?%>
+  <%=image_tag @question.question_image, class:"question_image"%>
+  <%end%>
+
+</br>
+  </div>
+  </br>
+<%if(@question.is_multiple_selection?)%>
+  <%=form_for(:question_option_selection) do |f|%>
+    <%@question.question_options.each do |option|%>
+      <%=f.label 'question_option_id_'+option.id.to_s do%>
+
+        <%=f.radio_button :question_option_id, option.id%>
+        <%=option.option_text%>
+
+
+          </br>
+      <%end%>
+      <%end%>
+    </br>
+    <%=submit_tag :Contestar, class:"submit"%>
+
+
+  <%end%>
+<%else%>
+    <%=form_for(:question_text_answer) do |f|%>
+      <%=f.text_field :text_response, class: 'text_area',:size => 150,:rows=>10%>
+
+      </br>
+
+      </br>
+      <%=submit_tag :Contestar, class:"submit"%>
+
+
+<%end%>
+<%end%>
+</div>
+
+<style>
+  .question_image{
+   max-height: 40%;
+    max-width: 40%;
+
+  }
+
+    .question_display{
+      margin: 5% 15% 5% 15%;
+      padding: 2%;
+      border-style: groove  ;
+      border-radius: 3px;
+      border-color: rgba(63, 63, 63, 0.78);
+      border-width: 1px;
+      background-color: rgba(168, 167, 163, 0.19);
+
+      padding: 2% 4% 2% 4%;
+
+    }
+
+
+    .question_display h1,p{
+
+      text-align: center;
+      margin-left: 5%;
+      margin-right:  5%;
+
+    }
+
+    .question_info{
+      border-style: groove  ;
+      border-width: 1px;
+      padding-top: 2%;
+      background-color: rgba(0, 3, 115, 0.12);
+
+    }
+  .question_display img{
+
+      margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+
+  }
+  .question_display .text_area{
+
+    width: 95%;
+
+    min-height:15ch;
+  }
+
+  .submit{
+      margin-right: 0%;
+      display: block;
+      margin-left: auto;
+    }
+
+
+</style>

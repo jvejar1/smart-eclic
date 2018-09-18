@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link: MyText
+  link_type: 1
+  prelab: one
+
+two:
+  link: MyText
+  link_type: 1
+  prelab: two

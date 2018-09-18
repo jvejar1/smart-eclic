@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User prelab:</strong>
+  <%= @circuit_simulation.user_prelab %>
+</p>
+
+<p>
+  <strong>Circuit:</strong>
+  <%= @circuit_simulation.circuit %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @circuit_simulation.grade %>
+</p>
+
+<%= link_to 'Edit', edit_circuit_simulation_path(@circuit_simulation) %> |
+<%= link_to 'Back', circuit_simulations_path %>

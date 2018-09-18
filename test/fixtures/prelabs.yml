@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  begin: 2018-09-02 22:26:54
+  end: 2018-09-02 22:26:54
+  err_explanation: MyText
+  activity: one
+
+two:
+  begin: 2018-09-02 22:26:54
+  end: 2018-09-02 22:26:54
+  err_explanation: MyText
+  activity: two

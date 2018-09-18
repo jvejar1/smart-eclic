@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Begin:</strong>
+  <%= @prelab.begin %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @prelab.end %>
+</p>
+
+<p>
+  <strong>Err explanation:</strong>
+  <%= @prelab.err_explanation %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @prelab.activity %>
+</p>
+
+<%= link_to 'Edit', edit_prelab_path(@prelab) %> |
+<%= link_to 'Back', prelabs_path %>

@@ -1,0 +1,97 @@
+<%question=locals[:question]
+k=locals[:k]
+user_prelab=locals[:user_prelab]%>
+<div class="question_display">
+  <h1>Pregunta #<%=k%></h1>
+
+  <br>
+  <div class=question_info>
+    <p><%=question.question_text%></p>
+
+    <%if question.question_image.attached?%>
+      <%=image_tag question.question_image, class:"question_image"%>
+    <%end%>
+    <%if(question.is_multiple_selection?)%>
+        <%question.question_options.each do |option|%>
+          <%=label_tag 'question_option_id_'+option.id.to_s do%>
+            <%=radio_button_tag :question_option_id, option.id, :readonly=>true%>
+            <%=option.option_text%>
+
+
+            </br>
+          <%end%>
+        <%end%>
+        </br>
+
+      </div>
+
+      <%selections=QuestionOptionSelection.where(user_prelab:user_prelab,question_option_id:question.question_options.select(:id))%>
+      <%selections.each do |selection|%>
+        <%=selection.question_option.option_text%>
+      <%end%>
+    <%else%>
+
+
+
+        </br>
+
+        </br>
+      </div>
+      <%question_text_answer=QuestionTextAnswer.find_by(user_prelab_id:user_prelab,question_id:question.id)%>
+      <%=question_text_answer.answer_text%>
+  <%end%>
+    </br>
+
+
+</div>
+
+<style>
+  .question_image{
+    max-height: 40%;
+    max-width: 40%;
+
+  }
+
+  .question_display{
+    margin: 5% 15% 5% 15%;
+    padding: 2%;
+    border-style: groove  ;
+    border-radius: 3px;
+    border-color: rgba(63, 63, 63, 0.78);
+    border-width: 1px;
+    background-color: rgba(168, 167, 163, 0.19);
+
+    padding: 2% 4% 2% 4%;
+
+  }
+
+
+  .question_display h1,p{
+
+    text-align: center;
+    margin-left: 5%;
+    margin-right:  5%;
+
+  }
+
+  .question_info{
+    border-style: groove  ;
+    border-width: 1px;
+    padding-top: 2%;
+    background-color: rgba(0, 3, 115, 0.12);
+
+  }
+  .question_display img{
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+
+  }
+  .question_display .text_area{
+
+    width: 95%;
+
+    min-height:15ch;
+  }</style>

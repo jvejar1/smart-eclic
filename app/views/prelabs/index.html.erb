@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prelabs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Begin</th>
+      <th>End</th>
+      <th>Err explanation</th>
+      <th>Activity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prelabs.each do |prelab| %>
+      <tr>
+        <td><%= prelab.begin %></td>
+        <td><%= prelab.end %></td>
+        <td><%= prelab.err_explanation %></td>
+        <td><%= prelab.activity %></td>
+        <td><%= link_to 'Show', prelab %></td>
+        <td><%= link_to 'Edit', edit_prelab_path(prelab) %></td>
+        <td><%= link_to 'Destroy', prelab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prelab', new_prelab_path %>

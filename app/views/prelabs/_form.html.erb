@@ -1,0 +1,37 @@
+<%= form_with(model: prelab, local: true) do |form| %>
+  <% if prelab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prelab.errors.count, "error") %> prohibited this prelab from being saved:</h2>
+
+      <ul>
+      <% prelab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :begin %>
+    <%= form.datetime_select :begin, id: :prelab_begin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end %>
+    <%= form.datetime_select :end, id: :prelab_end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :err_explanation %>
+    <%= form.text_area :err_explanation, id: :prelab_err_explanation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activity_id %>
+    <%= form.text_field :activity_id, id: :prelab_activity_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

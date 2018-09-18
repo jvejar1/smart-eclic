@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_prelab: one
+  circuit: one
+  grade: 1
+
+two:
+  user_prelab: two
+  circuit: two
+  grade: 1

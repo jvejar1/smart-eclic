@@ -1,0 +1,2 @@
+module StudentSummariesHelper
+end

@@ -1,0 +1,36 @@
+<%= form_with(model: circuit_simulation, local: true) do |form| %>
+  <% if circuit_simulation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(circuit_simulation.errors.count, "error") %> prohibited this circuit_simulation from being saved:</h2>
+
+      <ul>
+      <% circuit_simulation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_prelab_id %>
+    <%= form.text_field :user_prelab_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :circuit_id %>
+    <%= form.text_field :circuit_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grade %>
+    <%= form.number_field :grade %>
+  </div>
+  <div class="field">
+    <%= form.label :schematic %>
+    <%= form.file_field :schematic %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
