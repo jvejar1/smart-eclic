@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get '/answer/:question_id/bad_selection', to: 'answers#bad_selection', as:'bad_selection'
   get '/answer/:question_id', to: 'answers#new', as:'answer_question'
 
+  get '/', to:'activities#index'
 end
