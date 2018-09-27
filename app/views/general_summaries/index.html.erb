@@ -1,0 +1,106 @@
+<h1>Reportes generales</h1>
+<hr>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link <%='active' if @tab_name=="notas"%>" href=<%=general_summaries_path%>?tab_name=notas>Notas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%='active' if @tab_name=="avance"%>" href=<%=general_summaries_path%>?tab_name=avance>Avance</a>
+  </li>
+
+</ul>
+<br>
+<%if @tab_name=="notas"%>
+<div class="container">
+<table class="table">
+  <thead>
+  <tr>
+    <th>Alumno </th>
+    <%@activities.each do |activity|%>
+
+      <th > Nota prelab<%=activity.chapter%></th>
+
+      <th >Nota lab <%=activity.chapter%></th>
+      <%end%>
+  </tr>
+  </thead>
+  <tbody>
+
+  <%@students.each do |student|%>
+    <tr>
+      <td ><%=student.email%></td>
+      <%@activities.each do |activity|%>
+
+        <%prelab,lab=activity.prelab,activity.lab%>
+
+        <%user_prelab,user_lab=UserPrelab.find_by(prelab:prelab,user:student),UserLab.find_by(lab:lab,user:student)%>
+        <td > <%if !user_prelab.nil?%>
+            <%=user_prelab.get_questions_grade %>
+            <%else%>
+              No realiza
+            <%end%>
+            </td>
+
+        <td >
+          <%if !user_lab.nil?%>
+            <%=user_lab.class_grade%>
+            <%else%>
+          No realiza
+          <%end%>
+        </td>
+      <%end%>
+    </tr>
+  <%end%>
+
+
+  </tbody>
+</table>
+</div>
+
+<%elsif @tab_name=="avance"%>
+  <div class="container">
+<table class="table" id ="advance_summary_table">
+  <thead>
+  <tr>
+    <th>Alumno </th>
+    <%@activities.each do |activity|%>
+
+      <th scope="col"> ESTADO PRELAB <%=activity.chapter%></th>
+
+      <th scope="col">ESTADO LAB <%=activity.chapter%></th>
+    <%end%>
+  </tr>
+  </thead>
+  <tbody>
+
+  <%@students.each do |student|%>
+    <tr>
+      <td ><%=student.email%></td>
+      <%@activities.each do |activity|%>
+
+        <%prelab,lab=activity.prelab,activity.lab%>
+
+        <%user_prelab,user_lab=UserPrelab.find_by(prelab:prelab,user:student),UserLab.find_by(lab:lab,user:student)%>
+        <td> <%if !user_prelab.nil?%>
+            <%=user_prelab.get_state %>
+          <%else%>
+            No realiza
+          <%end%>
+        </td>
+
+        <td>
+          <%if !user_lab.nil?%>
+            <%=user_lab.get_state%>
+          <%else%>
+            No realiza
+          <%end%>
+        </td>
+      <%end%>
+    </tr>
+  <%end%>
+
+
+  </tbody>
+</table>
+  </div>
+<%end%>

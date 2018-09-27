@@ -16,7 +16,7 @@
 </br>
   </div>
   </br>
-<%if(@question.is_multiple_selection?)%>
+<%if(@question.is_multiple_selection)%>
   <%=form_for(:question_option_selection) do |f|%>
     <%@question.question_options.each do |option|%>
       <%=f.label 'question_option_id_'+option.id.to_s do%>
@@ -27,6 +27,7 @@
 
           </br>
       <%end%>
+        </br>
       <%end%>
     </br>
     <%=submit_tag :Contestar, class:"submit"%>

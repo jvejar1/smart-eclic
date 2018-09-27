@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question_option_selection: one
+  confirmed: false
+
+two:
+  question_option_selection: two
+  confirmed: false

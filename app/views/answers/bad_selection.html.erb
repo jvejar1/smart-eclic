@@ -1,0 +1,22 @@
+<div class="bordered_div">
+  <h1> Confirmar selección errónea </h1>
+  <hr>
+  <br>
+<%@user_prelab = UserPrelab.first%>
+  <%=render 'student_summaries/display_question', :locals=>{:question=>Question.first,:k=>0,:user_prelab=>@user_prelab}%>
+  <p>
+    Recientemente se ha equivocado en la seleccion de una alternativa. En los siguientes links encontrará información util para poder contestar correctamente a esta pregunta:
+  <ul>
+    <%@user_prelab.prelab.util_links.each do |util_link|%>
+      <li>
+        <%=link_to util_link.link, util_link.link%>
+        <%=util_link.link_type%>
+
+      </li>
+      <%end%>
+
+  </ul>
+
+  </p>
+  <%=button_to 'Confirmar'%>
+</div>

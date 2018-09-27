@@ -2,35 +2,49 @@
 <h1>Actividad: <%=Activity.chapters_by_number[@activity.chapter]%></h1>
 <hr>
 <br>
-<div class="circuits_div">
 
-  <h1>Circuitos</h1>
-  <ul>
-  <%@activity.prelab.circuits.each do |circuit|%>
-      <li> <%=circuit.name%> <%=link_to "Revisar adjunto",circuit_simulations_url%></li>
 
-  <%end%>
-  </ul>
-
-  <%=button_to "Editar Adjuntos", style:"margin-bottom:0%"%>
-</div>
-<br>
 <div class="util_links_div">
-<h1>
-  Material Apoyo
-</h1>
-  <h3><u>Bibliografía</u></h3>
+  <h5><u>Bibliografía</u></h5>
 
   <ul>
-  <%@activity.prelab.util_links.each do |util_link|%>
+    <%@activity.prelab.util_links.each do |util_link|%>
       <li><%=link_to util_link.link,util_link.link%></li>
 
+    <%end%>
+  </ul>
+
+<hr>
+
+
+  <h5><u>Circuitos</u></h5>
+  <ul>
+
+  <%@activity.prelab.circuits.each do |circuit|%>
+
+      <li> <%=circuit.name%> <%=link_to "Revisar adjunto",edit_circuit_simulation_path(1)%></li>
+
   <%end%>
   </ul>
-</div>
-<br>
-<%=button_to "Ir al Quizz",answer_question_path(1), :style=>"margin-right: 0%;display: block;margin-left: auto;",method: :get%>
 
+  <!--<%=button_to "Editar Adjuntos",edit_circuit_simulation_path(1), style:"margin-bottom:0%"%>-->
+
+  <%=button_to "Ir al Quizz",answer_question_path(1), :style=>"margin-right: 0%;display: block;margin-left: auto;",method: :get%>
+
+</div>
+
+<br>
+<div class =util_links_div>
+  <h5>Laboratorio</h5>
+
+  <%=label_tag :assignment do%>
+  <p>Enunciado: <%= link_to 'Descargar', rails_blob_path(@lab.assignment, disposition: "attachment") %>
+  </p>
+<%end%>
+  <p>Informe:  <%=link_to 'Descargar',rails_blob_path(@lab.assignment,disposition:"attachment")%></p>
+
+  <%=button_to 'Editar', edit_user_lab_path(@lab.user_labs.first), :method=>:get%>
+ </div>
 <style>
   .util_links_div, .circuits_div{
 

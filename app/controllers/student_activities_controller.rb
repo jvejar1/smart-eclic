@@ -8,10 +8,7 @@ class StudentActivitiesController < ApplicationController
 
   def index
 
-
   end
-
-
   def update_question_evaluation
     user_prelab=UserPrelab.where(user_id:@student.id,prelab_id:@activity.prelab.id)
     QuestionTextAnswer.where(user_prelab_id:user_prelab.id,question:question)
@@ -23,9 +20,9 @@ class StudentActivitiesController < ApplicationController
 
   end
   def evaluation
-
-
+    @user_lab = UserLab.find_by(lab_id: @lab.id,user_id:@student.id)
   end
+
   def groups
 
 
@@ -39,6 +36,7 @@ class StudentActivitiesController < ApplicationController
   def set_activity
 
     @activity=Activity.find(params[:id])
+    @lab=@activity.lab
   end
 
   private

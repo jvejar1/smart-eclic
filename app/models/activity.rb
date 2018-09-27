@@ -9,4 +9,5 @@ class Activity < ApplicationRecord
                             3=>"capitulo 3",
                             4=>"capitulo 4"}
   end
+
 end

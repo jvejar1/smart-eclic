@@ -11,6 +11,15 @@ class Prelab < ApplicationRecord
 
   def get_text_questions
     return self.questions.where(question_type:2)
-
   end
+
+  def was_performed_by_user(user_id)
+    user_prelab = UserPrelab.find_by(user_id:user_id,prelab_id:self.id)
+    if user_prelab.nil?
+      return false
+    else
+      return true
+    end
+  end
+
 end

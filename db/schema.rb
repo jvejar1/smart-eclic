@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_07_181437) do
+ActiveRecord::Schema.define(version: 2018_09_21_145814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2018_09_07_181437) do
     t.datetime "updated_at", null: false
     t.bigint "course_id"
     t.index ["course_id"], name: "index_activities_on_course_id"
+  end
+
+  create_table "bad_selections", force: :cascade do |t|
+    t.bigint "question_option_selection_id"
+    t.boolean "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_option_selection_id"], name: "index_bad_selections_on_question_option_selection_id"
   end
 
   create_table "circuit_simulations", force: :cascade do |t|
@@ -78,7 +86,8 @@ ActiveRecord::Schema.define(version: 2018_09_07_181437) do
   end
 
   create_table "labs", force: :cascade do |t|
-    t.date "lab_date"
+    t.date "begin"
+    t.date "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "activity_id"
@@ -197,6 +206,7 @@ ActiveRecord::Schema.define(version: 2018_09_07_181437) do
   end
 
   add_foreign_key "activities", "courses"
+  add_foreign_key "bad_selections", "question_option_selections"
   add_foreign_key "circuit_simulations", "circuits"
   add_foreign_key "circuit_simulations", "user_prelabs"
   add_foreign_key "circuits", "prelabs"

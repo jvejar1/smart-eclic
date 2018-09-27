@@ -1,7 +1,8 @@
 class CreateLabs < ActiveRecord::Migration[5.1]
   def change
     create_table :labs do |t|
-      t.date :lab_date
+      t.date :begin
+      t.date :end
 
       t.timestamps
     end

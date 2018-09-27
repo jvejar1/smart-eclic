@@ -1,0 +1,50 @@
+<%= form_with(model: user_lab, local: true) do |form| %>
+  <% if user_lab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_lab.errors.count, "error") %> prohibited this user_lab from being saved:</h2>
+
+      <ul>
+      <% user_lab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">-->
+    <!--<%= form.label :user_id %>-->
+    <!--<%= form.text_field :user_id %>-->
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <!--<%= form.label :lab_id %>-->
+    <!--<%= form.text_field :lab_id %>-->
+  <!--</div>-->
+
+  <div class="field">
+    <%= label_tag :report_link,"(AE) Informe actual : "%>
+    <%= link_to "Descargar", rails_blob_path(@user_lab.report,disposition:"attachment")%>
+
+  </div>
+
+
+  <div class="field">
+    <%= label_tag :report,"(A) Subir informe: "%>
+    <%= form.file_field :report %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :report_grade, "(E)Nota Informe" %>
+    <%= form.number_field :report_grade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :class_grade,"(E)Nota clase" %>
+    <%= form.number_field :class_grade %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar" %>
+  </div>
+<% end %>

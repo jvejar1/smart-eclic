@@ -10,6 +10,7 @@
   <label><b>Preguntas desarrollo:</b> </label>
 
   <ol>
+
   <%@activity.prelab.get_text_questions.each do |text_question|%>
 
     <li>
@@ -20,14 +21,17 @@
 
   <%end%>
 
+    <%=link_to "Ver resumen preguntas",student_summary_path(@student.id,:activity=>1)%>
+
   </ol>
     <label><b>Simulaciones:</b> </label>
 <ol>
     <%@activity.prelab.circuits.each do |circuit|%>
-
+    <%@user_prelab = UserPrelab.find_by(user:@student,prelab:@activity.prelab)%>
+    <%cir_sim = CircuitSimulation.find_by(circuit:circuit,user_prelab_id: @user_prelab.id)%>
       <li>
         <p><%=circuit.name%>
-          <%=link_to "Revisar","www" %>
+          <%=link_to "Revisar", edit_circuit_simulation_path(cir_sim)%>
         </p>
       </li>
 
@@ -40,15 +44,16 @@
 <h1>Laboratorio</h1>
 
 <div class="lab_eval">
-  <label for="nota_informe">Nota Informe: 4</label>
+  <label for="nota_informe">Nota Informe: <%=@user_lab.report_grade%></label>
   <br>
-  <label>Nota Participacion: 4 </label>
+  <label>Nota Participacion: <%=@user_lab.class_grade%> </label>
   <br>
-  <label>Nota Final Lab: 4 </label>
+  <label>Informe adjunto: <%= link_to 'Descargar', rails_blob_path(@user_lab.report, disposition: "attachment") || @user_lab.report%> </label>
+  <br>
+  <label>Nota Final Lab: <%=(@user_lab.report_grade+@user_lab.class_grade)/2%> </label>
 
   <br>
-<%=button_to "Editar", "xd"%>
-
+<%=link_to "Editar Notas",edit_user_lab_path(@user_lab)%>
 </div>
 
 

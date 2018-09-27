@@ -11,26 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_prelab_id %>
-    <%= form.text_field :user_prelab_id %>
-  </div>
 
   <div class="field">
-    <%= form.label :circuit_id %>
-    <%= form.text_field :circuit_id %>
+    <%= label_tag :schematic_link,"(AE)Esquematico:" %>
+    <%=if circuit_simulation.schematic.attached? then link_to "Descargar", rails_blob_path( circuit_simulation.schematic, disposition: "attachment") else "No adjunta" end %>
   </div>
 
+  <!---->
+  <!--<div class="field">-->
+    <!--<%= form.label :user_prelab_id %>-->
+    <!--<%= form.text_field :user_prelab_id %>-->
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <!--<%= form.label :circuit_id %>-->
+    <!--<%= form.text_field :circuit_id %>-->
+  <!--</div>-->
+
   <div class="field">
-    <%= form.label :grade %>
+    <%= form.label :grade,"(E) Nota:" %>
     <%= form.number_field :grade %>
   </div>
   <div class="field">
-    <%= form.label :schematic %>
+    <%= form.label :schematic ,"(A)Adjuntar"%>
     <%= form.file_field :schematic %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Subir"%>
   </div>
 <% end %>

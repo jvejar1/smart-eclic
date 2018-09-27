@@ -2,10 +2,12 @@
 
 <h1>Activities</h1>
 
-<table>
+<table class ="table">
   <thead>
     <tr>
       <th>Chapter</th>
+      <th>Inicio</th>
+      <th>Fin</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +16,15 @@
     <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.chapter %></td>
-        <td><%= link_to 'Show', activity %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= if !activity.prelab.nil? then activity.prelab.begin.to_date end%></td>
+
+        <td><%= if !activity.lab.nil? and !activity.lab.begin.nil? then activity.lab.begin.to_date else 'Sin Info' end%></td>
+
+
+        <td><%= link_to 'Entrar como alumno', student_activity_path(id:activity.id,student_id:1) %> |</td>
+        <td><%= link_to 'Entrar como evaluador', activity_evaluation_path(activity) %> |</td>
+        <td><%= link_to 'Edit', edit_activity_path(activity) %> |</td>
+        <!--<td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

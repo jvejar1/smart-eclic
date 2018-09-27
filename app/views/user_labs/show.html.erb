@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_lab.user %>
+</p>
+
+<p>
+  <strong>Lab:</strong>
+  <%= @user_lab.lab %>
+</p>
+
+<p>
+  <strong>Class grade:</strong>
+  <%= @user_lab.class_grade %>
+</p>
+
+<p>
+  <strong>Report grade:</strong>
+  <%= @user_lab.report_grade %>
+</p>
+
+<%= link_to 'Edit', edit_user_lab_path(@user_lab) %> |
+<%= link_to 'Back', user_labs_path %>

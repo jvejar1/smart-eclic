@@ -14,26 +14,26 @@
 
 <%=label_tag :activity_type do%>
   Tipo:
-  <%=select_tag 'activity_type',options_for_select([["Seleccione",0],["Prelab",1],["Lab",2]])%>
+  <!--<%=select_tag 'activity_type',options_for_select([["Seleccione",0],["Prelab",1],["Lab",2]])%>-->
 <%=submit_tag "Filtrar"%>
 <%end%>
     <%end%>
 </div>
 
 
-<%if @activity_id!=0 and @activity_type_int!=0%>
+<%if @activity_id!=0%>
   <%activity=Activity.find_by(id:@activity_id)%>
   <%user_prelab=UserPrelab.find_by(prelab_id:activity.prelab.id,user_id:@student.id)%>
 
   <%questions=activity.prelab.questions%>
   <%k=1%>
-  <%if @activity_type_int==1%>
+  <%#if @activity_type_int==1%>
       <%questions.each do |question|%>
     <%=render 'display_question', :locals=>{:question=>question,:k=>k,:user_prelab=>user_prelab}%>
 
     <%k+=1
       end%>
-  <%end %>
+  <%#end %>
 <%end %>
 <div>
 

@@ -2,7 +2,7 @@ class Question < ApplicationRecord
   @@MULTIPLE_SELECTION_TYPE=1
   @@TEXT_ANSWER_TYPE=2
 
-  def is_multiple_selection?
+  def is_multiple_selection
     if self.question_type==@@MULTIPLE_SELECTION_TYPE
       return true
     end
